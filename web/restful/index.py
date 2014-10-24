@@ -12,7 +12,11 @@ from kpages import url, ContextHandler, LogicContext, get_context, service_async
 @url(r"/([\w]+)/?")
 class IndexHandler(ContextHandler,tornado.web.RequestHandler):
     def get(self, *args):
-        codename = args[0]
+        print args
+        if len(args) == 0: 
+            codename = 'huke' 
+        else: 
+            codename = args[0]
         db = get_context().get_mongoclient('my2048')['user']
         highscore = 0
         lastscore = 0

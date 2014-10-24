@@ -18,7 +18,7 @@
 <body>
 <select id="cd-dropdown" class="cd-select">
     <option value="-1"selected>
-d        设置
+        设置
     </option>
     <option value="1" class="fa fa-user">
         <a href="#">修改/设置昵称</a>
@@ -92,6 +92,8 @@ d        设置
     </div>
     <header>
         <h2>欢迎来到，<span id="username">{{name or codename}}</span>和他的朋友们的2048！</h2>
+        <h4 class="text-muted">收藏：<ins>182.92.8.100:8888/{{codename}}</ins>，下次继续玩，记录会自动保存哦！</h4>
+        <h4 class="text-muted">或者在浏览器中输入<ins>182.92.8.100:8888/任意帐号（拼音或者数字）</ins>，创建属于你自己的游戏！</h4>
         <a id="newgamebutton">新游戏</a>
         <p>
             <span class="num-now">0</span>
