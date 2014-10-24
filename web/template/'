@@ -1,0 +1,18 @@
+# -*- coding:utf-8 -*-
+"""
+    index action demo
+    author cookmycode@gmail.com
+"""
+import tornado
+
+from tornado import gen
+from kpages import url, ContextHandler, LogicContext, get_context, service_async, mongo_conv
+
+
+@url(r"/([\w]+)/?")
+class IndexHandler(ContextHandler,tornado.web.RequestHandler):
+    def get(self):
+        db = get_context().get_mongoclient('my2048')['user']
+        user = list(db.find())
+        self.render('index.html', data = user[0].get('name',''))
+

@@ -1,0 +1,6 @@
+body {
+    background: url('/static/image/bg-gray.jpg');
+}
+.hide {
+    display: none;
+}
