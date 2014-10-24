@@ -4,3 +4,7 @@ body {
 .hide {
     display: none;
 }
+#rank-board {
+    position: absolute;
+    top: 0;
+}

@@ -37,13 +37,26 @@ class IndexHandler(ContextHandler,tornado.web.RequestHandler):
             db.insert({"codename":codename})
             name = ''
         print user
+
+        db = get_context().get_mongoclient('my2048')['user']
+        rank = list(db.find({}, {'_id': 0}).sort([('highnum', -1)]).limit(5))
+
         self.render('index.html', name = name,
             codename = codename,
             highscore = highscore,
             lastscore = lastscore,
             password = password,
             highnum = highnum,
-            lastboard = lastboard)
+            lastboard = lastboard,
+            rank = rank)
+
+@url(r"/get/highnum")
+class GetHighnumHandler(ContextHandler,tornado.web.RequestHandler):
+    def get(self):
+        db = get_context().get_mongoclient('my2048')['user']
+        data = list(db.find({}, {'_id': 0}).sort([('highnum', -1)]).limit(10))
+        self.write(dict(status = True, data = data))
+
 
 @url(r"/update/name")
 class UpdateNameHandler(ContextHandler,tornado.web.RequestHandler):
@@ -63,7 +76,7 @@ class UpdateHighnumHandler(ContextHandler, tornado.web.RequestHandler):
         highnum = self.get_argument('highnum')
         
         db = get_context().get_mongoclient('my2048')['user']
-        db.update({"codename": codename}, {"$set":{"highnum": highnum}})
+        db.update({"codename": codename}, {"$set":{"highnum": float(highnum)}})
 
         self.write(dict(status = True))
 
