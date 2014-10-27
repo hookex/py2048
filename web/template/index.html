@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>2048</title>
+	<title>2048&middot;{{name or codename}}</title>
     <link href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bracket.css">
@@ -100,7 +100,7 @@
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
           <div class="panel-body">
             {% set Index = 1 %}
             <dl class="dl-horizontal">
@@ -121,11 +121,20 @@
 
     <header>
         <h2>欢迎来到，<span id="username">{{name or codename}}</span>和他的朋友们的2048！</h2>
-        <h4 class="text-success">（请点击右上角修改昵称！）</h4>
-        <h4 class="text-muted">收藏：<ins>182.92.8.100:8888/{{codename}}</ins>，下次继续玩，记录会自动保存哦！</h4>
-        <h4 class="text-muted">或者在浏览器中输入<ins>182.92.8.100:8888/任意帐号（拼音或者数字）</ins>，创建属于你自己的游戏！</h4>
-        <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
-        <a id="newgamebutton">新游戏</a>
+        {% if codename == 'huke' %}
+        <form id="create-game">
+            <div class="form-group">
+                <div class="col-xs-2 col-xs-offset-5" style="min-width:307px">
+                    <input name="myGame" type="text" class="form-control" placeholder="输入名字拼音（不能是汉字），创建自己的游戏">
+                </div>
+            </div>
+        </form>
+        {% else %}
+        <!-- <h4 class="text-success">（请点击右上角修改昵称！）</h4> -->
+        <small class="text-muted">收藏：<a href="http://182.92.8.100:8888/{{codename}}" target="_"><ins>182.92.8.100:8888/{{codename}}</ins></a>，下次继续玩，记录会自动保存哦！</small>
+        {% end %}
+<!--         <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
+ -->        <a id="newgamebutton">新游戏</a>
         <p>
             <span class="num-now">0</span>
             /
@@ -234,10 +243,39 @@ $(function(){
         })
     }
 
-    $(document).keydown(function(event){
-        submitHighNum();
-        submitLastboard();
+    $('#create-game').bootstrapValidator({
+        message: 'This value is not valid',
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+         fields: {
+            myGame: {
+                validators: {
+                    notEmpty: {
+                        message: '不能为空！'
+                    }
+                }
+            }
+        }
     });
+
+    $(document).keydown(function(event){
+        if (event.keyCode <=40 && event.keyCode >= 37 ) {
+            submitHighNum();
+            submitLastboard();
+        } else if (event.keyCode === 13 && $(event.target).attr('name') === 'myGame') {
+            var $input = $('input[name="myGame"]');
+            var result = $('#create-game').data('bootstrapValidator').validate();
+
+            if (result) {
+                location.href = $input.val();
+            }
+            return false;
+        }
+    });
+
 
     $('#newgamebutton').click(function(){
         submitHighNum();
@@ -281,6 +319,7 @@ $(function(){
                 }, 1000);
            }
         }, 'json');
+
 });
 });
 </script>
