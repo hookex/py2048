@@ -90,25 +90,38 @@
             </form>
         </section>
     </div>
-    <div class="well" id="rank-board">
-        {% set Index = 1 %}
-        <dl class="dl-horizontal">
-            <dt> 排行榜</dt><dd>&nbsp;</dd>
-            {% for v in rank %}
-              <dt>第{{Index}}名：</dt>
-              <dd>
-                  <span class="badge {% if Index == 1 %} badge-danger {% elif Index ==2 %} badge-warning {% elif Index == 3%} badge-success {% end %} ">{{int(v.get('highnum','0'))}}</span>
-                  {{v.get('name') or v.get('codename')}}
-              </dd>
-              {% set Index += 1 %}
-        {% end %}
-        </dl>
 
-            
-            
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              排行榜
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse" role="tabpanel">
+          <div class="panel-body">
+            {% set Index = 1 %}
+            <dl class="dl-horizontal">
+                <dt> </dt><dd>&nbsp;</dd>
+                {% for v in rank %}
+                  <dt>第{{Index}}名：</dt>
+                  <dd>
+                      <span class="badge {% if Index == 1 %} badge-danger {% elif Index ==2 %} badge-warning {% elif Index == 3%} badge-success {% end %} ">{{int(v.get('highnum','0'))}}</span>
+                      {{v.get('name') or v.get('codename')}}
+                  </dd>
+                  {% set Index += 1 %}
+                {% end %}
+            </dl>     
+          </div>
+        </div>
+      </div>
     </div>
+
     <header>
-        <h2>欢迎来到，<span id="username">{{name or codename}}</span>和他的朋友们的2048！<small class="text-success">（请点击右上角修改昵称！）</small></h2>
+        <h2>欢迎来到，<span id="username">{{name or codename}}</span>和他的朋友们的2048！</h2>
+        <h4 class="text-success">（请点击右上角修改昵称！）</h4>
         <h4 class="text-muted">收藏：<ins>182.92.8.100:8888/{{codename}}</ins>，下次继续玩，记录会自动保存哦！</h4>
         <h4 class="text-muted">或者在浏览器中输入<ins>182.92.8.100:8888/任意帐号（拼音或者数字）</ins>，创建属于你自己的游戏！</h4>
         <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
