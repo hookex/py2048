@@ -9,8 +9,17 @@ body {
     top: 0;
 }
 #accordion {
-    width: 400px;
+    width: 220px;
     position: fixed;
     top: 10px;
     left: 20px;
+}
+.dl-horizontal dt {
+    width: 60px;
+}
+.dl-horizontal dd {
+    margin-left: 60px;
+}
+#accordion .panel-title a {
+    text-align: center;
 }
