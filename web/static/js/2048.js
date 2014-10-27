@@ -13,6 +13,7 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
+                return false;
                 if( isgameover() ) gameover();
             }
             break;
@@ -21,6 +22,7 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
+                return false;
                 if( isgameover() ) gameover();
             }
             break;
@@ -29,6 +31,7 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
+                return false;
                 if( isgameover() ) gameover();
             }
             break;
@@ -37,6 +40,7 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
+                return false;
                 if( isgameover() ) gameover();
             }
             break;

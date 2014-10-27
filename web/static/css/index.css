@@ -8,3 +8,9 @@ body {
     position: absolute;
     top: 0;
 }
+#accordion {
+    width: 400px;
+    position: fixed;
+    top: 10px;
+    left: 20px;
+}
