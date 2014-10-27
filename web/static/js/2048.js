@@ -13,17 +13,17 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
-                return false;
                 if( isgameover() ) gameover();
             }
+            return false;
             break;
         case 40: // down
             if( moveDown() ) {
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
-                return false;
                 if( isgameover() ) gameover();
+                return false;
             }
             break;
         case 37: //left
@@ -31,8 +31,8 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
-                return false;
                 if( isgameover() ) gameover();
+                return false;
             }
             break;
         case 39: //right
@@ -40,8 +40,8 @@ $(document).keydown(function(event){
                 generateOneNumber();
                 updateNumNowText();
                 updateBoardText();
-                return false;
                 if( isgameover() ) gameover();
+                return false;
             }
             break;
         default : break;
