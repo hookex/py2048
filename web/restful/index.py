@@ -41,7 +41,8 @@ class IndexHandler(ContextHandler,tornado.web.RequestHandler):
         db = get_context().get_mongoclient('my2048')['user']
         rank = list(db.find({}, {'_id': 0}).sort([('highnum', -1)]).limit(10))
 
-        self.render('index.html', name = name,
+        self.render('index.html',
+            name = name,
             codename = codename,
             highscore = highscore,
             lastscore = lastscore,
