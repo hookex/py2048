@@ -30,7 +30,7 @@
     <option value="4" class="fa fa-question">敬请期待……</option>
 </select>
 
-    <div id="board-record" class="hide">{{ lastboard }}</div>
+    <div id="board-record" class="">{{ lastboard }}</div>
     <div id="test">
         <section class="well">
         	<form class="form-horizontal" id="update-name-form" action="/update/name" method="post">
@@ -132,7 +132,7 @@
         <small class="text-muted">收藏：<a href="http://182.92.8.100:8888/{{codename}}" target="_"><ins>182.92.8.100:8888/{{codename}}</ins></a>，下次继续玩，记录会自动保存哦！</small>
         {% end %}
 <!--         <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
- -->        <a id="newgamebutton">新游戏</a>
+ -->        <a id="new-game-button">新游戏</a>
         <p>
             <span class="num-now">0</span>
             /
@@ -198,6 +198,7 @@
             </div>
       </div>
     </div>
+    
 <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrapValidator.js"></script>
@@ -275,7 +276,7 @@ $(function(){
     });
 
 
-    $('#newgamebutton').click(function(){
+    $('#new-game-button').click(function(){
         submitHighNum();
         submitLastboard();
     });
