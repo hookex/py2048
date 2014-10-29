@@ -10,7 +10,7 @@ header h1 {
     font-weight: bold;
 }
 
-header #newgamebutton {
+header #new-game-button {
     display: block;
     margin: 20px auto;
 
@@ -26,7 +26,7 @@ header #newgamebutton {
     text-decoration: none;
 }
 
-header #newgamebutton:hover {
+header #new-game-button:hover {
     background-color: #9f8b77;
 }
 
@@ -87,6 +87,6 @@ header p {
 
     position: absolute;
 }
-#newgamebutton {
+#new-game-button {
     cursor: pointer;
 }

@@ -30,7 +30,7 @@
     <option value="4" class="fa fa-question">敬请期待……</option>
 </select>
 
-    <div id="board-record" class="">{{ lastboard }}</div>
+    <div id="board-record" class="hide">{{ lastboard }}</div>
     <div id="test">
         <section class="well">
         	<form class="form-horizontal" id="update-name-form" action="/update/name" method="post">
@@ -198,9 +198,9 @@
             </div>
       </div>
     </div>
-    
-<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-<script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
 <script src="/static/js/bootstrapValidator.js"></script>
 <script src="/static/js/modernizr.custom.js"></script>
 <script src="/static/js/dropdown.js"></script>
@@ -242,23 +242,23 @@ $(function(){
         })
     }
 
-    $('#create-game').bootstrapValidator({
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-         fields: {
-            myGame: {
-                validators: {
-                    notEmpty: {
-                        message: '不能为空！'
-                    }
-                }
-            }
-        }
-    });
+    // $('#create-game').bootstrapValidator({
+    //     message: 'This value is not valid',
+    //     feedbackIcons: {
+    //         valid: 'glyphicon glyphicon-ok',
+    //         invalid: 'glyphicon glyphicon-remove',
+    //         validating: 'glyphicon glyphicon-refresh'
+    //     },
+    //      fields: {
+    //         myGame: {
+    //             validators: {
+    //                 notEmpty: {
+    //                     message: '不能为空！'
+    //                 }
+    //             }
+    //         }
+    //     }
+    // });
 
     $(document).keydown(function(event){
         if (event.keyCode <=40 && event.keyCode >= 37 ) {
