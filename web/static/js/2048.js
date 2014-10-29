@@ -71,7 +71,6 @@ function getLastBoard() {
         var board = [new Array(4),new Array(4),new Array(4),new Array(4)]
 
         for (var i=0; i < boardArr.length; i++) {
-            console.log(i/4);
             board[parseInt(i/4)][i%4] = parseInt(boardArr[i]);
         }
     
@@ -185,6 +184,12 @@ function updateBoardView() {
                 theNumbercell.css('left', getPosLeft(i, j));
                 theNumbercell.css('background-color', getNumberBackgroundColor(board[i][j]));
                 theNumbercell.text(board[i][j]);
+                console.log(board);
+                if (board[i][j] >= 1000) {
+                    theNumbercell.css('font-size', '40px');
+                } else if(board[i][j] >= 10000) {
+                    theNumbercell.css('font-size', '33px');
+                }
             }
         }
     }

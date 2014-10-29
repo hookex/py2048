@@ -1,5 +1,6 @@
 body {
     background: url('/static/image/bg-gray.jpg');
+    font-family: "Helvetica Neue", Helvetica, Microsoft Yahei, Hiragino Sans GB, WenQuanYi Micro Hei, sans-serif;
 }
 .hide {
     display: none;
@@ -22,4 +23,8 @@ body {
 }
 #accordion .panel-title a {
     text-align: center;
+}
+input[name="myGame"] {
+    display: block;
+    margin: 0 auto;
 }
