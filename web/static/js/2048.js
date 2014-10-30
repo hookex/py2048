@@ -50,7 +50,7 @@ $(document).keydown(function(event){
     // return false;
 });
 
-$('#newgamebutton').click(function(){
+$('#new-game-button').click(function(){
     newgame();
     updateBoardText();
 })
