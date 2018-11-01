@@ -28,3 +28,11 @@ input[name="myGame"] {
     display: block;
     margin: 0 auto;
 }
+
+.score-text {
+    text-align: center;
+}
+
+header {
+    margin-bottom: 15px;
+}

@@ -14,9 +14,10 @@ class IndexHandler(ContextHandler,tornado.web.RequestHandler):
     def get(self, *args):
         print args
         if len(args) == 0: 
-            codename = 'huke' 
+            codename = 'hooke' 
         else: 
             codename = args[0]
+
         db = get_context().get_mongoclient('my2048')['user']
         highscore = 0
         lastscore = 0

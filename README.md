@@ -2,7 +2,8 @@
 
 use python tornado and js
 
-run at aliyun server
+14年写的，现在跑起来看，写的还不错
 
 ### Play It
-  <a href="http://182.92.8.100:8888/" target="_">http://182.92.8.100:8888/</a>
+
+http://2048.hooke.site

@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	<title>2048&middot;{{name or codename}}</title>
+    <meta charset="UTF-8">
+    <title>2048&middot;{{name or codename}}</title>
     <link href="//libs.baidu.com/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/static/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/static/css/bracket.css">
@@ -17,31 +18,32 @@
 </head>
 <!--[if lt IE 9]><body class="ie ie6 lte9 lte8 lte7">暂时不支持IE内核，请切换到急速模式！<![endif]-->
 <!--[if !IE | (gte IE 9)]><!-->
+
 <body>
-<select id="cd-dropdown" class="cd-select">
-    <option value="-1"selected>
-        设置</span>
-    </option>
-    <option value="1" class="fa fa-user">
-        <a href="#">修改/设置昵称</a>
-    </option>
-    <option value="2" class="fa fa-key">设置密码（开发中……）</option>
-    <option value="3" class="fa fa-question">敬请期待……</option>
-    <option value="4" class="fa fa-question">敬请期待……</option>
-</select>
+    <select id="cd-dropdown" class="cd-select">
+        <option value="-1" selected>
+            设置</span>
+        </option>
+        <option value="1" class="fa fa-user">
+            <a href="#">修改/设置昵称</a>
+        </option>
+        <option value="2" class="fa fa-key">设置密码（开发中……）</option>
+        <option value="3" class="fa fa-question">敬请期待……</option>
+        <option value="4" class="fa fa-question">敬请期待……</option>
+    </select>
 
     <div id="board-record" class="hide">{{ lastboard }}</div>
     <div id="test">
         <section class="well">
-        	<form class="form-horizontal" id="update-name-form" action="/update/name" method="post">
+            <form class="form-horizontal" id="update-name-form" action="/update/name" method="post">
                 <input type="hidden" name="codename" value="{{ codename }}">
-        		<div class="form-group">
-        			<div class="col-md-12">
-        				<input class="form-control" type="text" name="name" placeholder="请输入用户名" value="{{ name or codename }}">
-        			</div>
-        		</div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <input class="form-control" type="text" name="name" placeholder="请输入用户名" value="{{ name or codename }}">
+                    </div>
+                </div>
                 <button class="btn btn-primary btn-block" type="submit">更改昵称</button>
-        	</form>
+            </form>
         </section>
 
         <section class="well">
@@ -55,7 +57,7 @@
                 <button class="btn btn-primary btn-block" type="submit">设置密码</button>
             </form>
         </section>
-        
+
         <section class="well">
             <form class="form-horizontal" action="/update/highnum" method="post">
                 <input type="hidden" name="codename" value="{{ codename }}">
@@ -94,52 +96,57 @@
     </div>
 
     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">
-            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-              排行榜
-            </a>
-          </h4>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                        排行榜
+                    </a>
+                </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
+                <div class="panel-body">
+                    {% set Index = 1 %}
+                    <dl class="dl-horizontal">
+                        <dt> </dt>
+                        <dd>&nbsp;</dd>
+                        {% for v in rank %}
+                        <dt>第{{Index}}名：</dt>
+                        <dd>
+                            <span class="badge {% if Index == 1 %} badge-danger {% elif Index ==2 %} badge-warning {% elif Index == 3%} badge-success {% end %} ">{{int(v.get('highnum','0'))}}</span>
+                            {{v.get('name') or v.get('codename')}}
+                        </dd>
+                        {% set Index += 1 %}
+                        {% end %}
+                    </dl>
+                </div>
+            </div>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel">
-          <div class="panel-body">
-            {% set Index = 1 %}
-            <dl class="dl-horizontal">
-                <dt> </dt><dd>&nbsp;</dd>
-                {% for v in rank %}
-                  <dt>第{{Index}}名：</dt>
-                  <dd>
-                      <span class="badge {% if Index == 1 %} badge-danger {% elif Index ==2 %} badge-warning {% elif Index == 3%} badge-success {% end %} ">{{int(v.get('highnum','0'))}}</span>
-                      {{v.get('name') or v.get('codename')}}
-                  </dd>
-                  {% set Index += 1 %}
-                {% end %}
-            </dl>     
-          </div>
-        </div>
-      </div>
     </div>
 
     <header>
         <h2>欢迎来到，<span id="username">{{name or codename}}</span>和他的朋友们的2048！</h2>
-        {% if codename == 'huke' %}
+        {% if codename == 'hooke' %}
         <form id="create-game">
-            <input name="myGame" type="text" class="form-control" placeholder="输入名字拼音（不能是汉字），创建自己的游戏" style="width:350px">
+            <input name="myGame" type="text" class="form-control" placeholder="输入自己的昵称(英文)，回车创建只属于你的2048" style="width:350px">
         </form>
         {% else %}
         <!-- <h4 class="text-success">（请点击右上角修改昵称！）</h4> -->
-        <small class="text-muted">收藏：<a href="http://182.92.8.100:8888/{{codename}}" target="_"><ins>182.92.8.100:8888/{{codename}}</ins></a>，下次继续玩，记录会自动保存哦！</small>
+        <small class="text-muted">收藏：<a href="http://2048.hooke.site/{{codename}}" target="_"><ins>2048.hooke.site/{{codename}}</ins></a>，下次继续玩，记录会自动保存哦！</small>
         {% end %}
-<!--         <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
- -->        <a id="new-game-button">新游戏</a>
-        <p>
-            <span class="num-now">0</span>
-            /
-            <span id="highnum">{{int(highnum)}}</span>
-        </p>
+        <!--         <h4 class="text-danger">IE不能玩，请切换到急速模式（360和其他浏览器）</h4>
+ -->
         <p class="hide">score: <span>0</span></p>
     </header>
+
+    <p class="score-text">
+        分数:
+        <span class="num-now">0</span>
+
+        最高分:
+        <span id="highnum">{{int(highnum)}}</span>
+    </p>
 
     <div id="grid-container">
         <div class="grid-cell" id="grid-cell-0-0"></div>
@@ -156,22 +163,26 @@
         <div class="grid-cell" id="grid-cell-2-1"></div>
         <div class="grid-cell" id="grid-cell-2-2"></div>
         <div class="grid-cell" id="grid-cell-2-3"></div>
-        
+
         <div class="grid-cell" id="grid-cell-3-0"></div>
         <div class="grid-cell" id="grid-cell-3-1"></div>
         <div class="grid-cell" id="grid-cell-3-2"></div>
         <div class="grid-cell" id="grid-cell-3-3"></div>
     </div>
 
+
     <div id="gameover">
         <h1>
             Game Over
-        </h1>   
+        </h1>
     </div>
 
-    <div id="modal-mod-name" class="modal fade bs-example-modal-panel in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
-      <div class="modal-dialog">
-        <div class="modal-content">
+    <a id="new-game-button">重新开始</a>
+
+    <div id="modal-mod-name" class="modal fade bs-example-modal-panel in" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="false">
+        <div class="modal-dialog">
+            <div class="modal-content">
                 <div class="panel panel-dark panel-alt">
                     <form action="/update/name" method="post">
                         <input type="hidden" name="codename" value="{{ codename }}">
@@ -196,132 +207,135 @@
                     </form>
                 </div>
             </div>
-      </div>
+        </div>
     </div>
 
-<script src="/static/js/jquery.min.js"></script>
-<script src="/static/js/bootstrap.min.js"></script>
-<script src="/static/js/bootstrapValidator.js"></script>
-<script src="/static/js/modernizr.custom.js"></script>
-<script src="/static/js/dropdown.js"></script>
-<script src="/static/js/showanimation.js"></script>
-<script src="/static/js/support.js"></script>
-<script src="/static/js/2048.js"></script>
-<script>
-$(function(){
-    $( '#cd-dropdown' ).dropdown( {
-        gutter : 5,
-        delay : 100,
-        random : true
-    } );
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <script src="/static/js/bootstrapValidator.js"></script>
+    <script src="/static/js/modernizr.custom.js"></script>
+    <script src="/static/js/dropdown.js"></script>
+    <script src="/static/js/showanimation.js"></script>
+    <script src="/static/js/support.js"></script>
+    <script src="/static/js/2048.js"></script>
+    <script>
+        $(function () {
+            $('#cd-dropdown').dropdown({
+                gutter: 5,
+                delay: 100,
+                random: true
+            });
 
-    $('li[data-value="1"]').click(function(){
-        $('#modal-mod-name').modal('show');
-    });
+            $('li[data-value="1"]').click(function () {
+                $('#modal-mod-name').modal('show');
+            });
 
-    var codename = "{{codename}}";
+            var codename = "{{codename}}";
 
-    function submitHighNum () {
-        var numNow = parseInt($('.num-now').text()),
-            highnum = parseInt($('#highnum').text());
+            function submitHighNum() {
+                var numNow = parseInt($('.num-now').text()),
+                    highnum = parseInt($('#highnum').text());
 
-        if (numNow > highnum) {
-            $('#highnum').text(numNow);
+                if (numNow > highnum) {
+                    $('#highnum').text(numNow);
 
-            $.post('/update/highnum', {codename: codename, highnum: numNow}, function(data){
-                console.log(data);
-            })
-        }
-    }
-
-    function submitLastboard() {
-        var lastboard = $("#board-record").text().replace('"', '');
-        lastboard.replace("'", "");
-        $.post('/update/lastboard', {codename: codename, lastboard: lastboard}, function(data){
-                console.log(data);
-        })
-    }
-
-    // $('#create-game').bootstrapValidator({
-    //     message: 'This value is not valid',
-    //     feedbackIcons: {
-    //         valid: 'glyphicon glyphicon-ok',
-    //         invalid: 'glyphicon glyphicon-remove',
-    //         validating: 'glyphicon glyphicon-refresh'
-    //     },
-    //      fields: {
-    //         myGame: {
-    //             validators: {
-    //                 notEmpty: {
-    //                     message: '不能为空！'
-    //                 }
-    //             }
-    //         }
-    //     }
-    // });
-
-    $(document).keydown(function(event){
-        if (event.keyCode <=40 && event.keyCode >= 37 ) {
-            submitHighNum();
-            submitLastboard();
-        } else if (event.keyCode === 13 && $(event.target).attr('name') === 'myGame') {
-            var $input = $('input[name="myGame"]');
-            var result = $('#create-game').data('bootstrapValidator').validate();
-
-            if (result) {
-                location.href = $input.val();
-            }
-            return false;
-        }
-    });
-
-
-    $('#new-game-button').click(function(){
-        submitHighNum();
-        submitLastboard();
-    });
-
-
-    /*form valid*/
-    $('#modal-mod-name form').bootstrapValidator({
-        message: 'This value is not valid',
-        feedbackIcons: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-         fields: {
-            name: {
-                validators: {
-                    notEmpty: {
-                        message: '你妈喊你起个名！'
-                    }
+                    $.post('/update/highnum', { codename: codename, highnum: numNow }, function (data) {
+                        console.log(data);
+                    })
                 }
             }
-        }
-    }).on('success.form.bv', function(e) {
-        e.preventDefault();   
-        var $form = $(e.target);
-        // Get the BootstrapValidator instance
-        var bv = $form.data('bootstrapValidator');
-        // Use Ajax to submit form data
-        $.post($form.attr('action'), $form.serialize(), function(result) {
-           if (result.status) {
-                var name = $('#modal-mod-name input[name="name"]').val();
 
-                $('#modal-mod-name form button[type="submit"]').button('complete').toggleClass('btn-primary btn-success');
+            function submitLastboard() {
+                var lastboard = $("#board-record").text().replace('"', '');
+                lastboard.replace("'", "");
+                $.post('/update/lastboard', { codename: codename, lastboard: lastboard }, function (data) {
+                    console.log(data);
+                })
+            }
 
-                $('#username').text(name);
+            // $('#create-game').bootstrapValidator({
+            //     message: 'This value is not valid',
+            //     feedbackIcons: {
+            //         valid: 'glyphicon glyphicon-ok',
+            //         invalid: 'glyphicon glyphicon-remove',
+            //         validating: 'glyphicon glyphicon-refresh'
+            //     },
+            //     fields: {
+            //         myGame: {
+            //             validators: {
+            //                 notEmpty: {
+            //                     message: '不能为空！'
+            //                 }
+            //             }
+            //         }
+            //     }
+            // });
 
-                setTimeout(function(){
-                    $('.modal').modal('hide')
-                }, 1000);
-           }
-        }, 'json');
+            $(document).keydown(function (event) {
+                if (event.keyCode <= 40 && event.keyCode >= 37) {
+                    submitHighNum();
+                    submitLastboard();
+                } else if (event.keyCode === 13 && $(event.target).attr('name') === 'myGame') {
+                    var $input = $('input[name="myGame"]');
+                    // var result = $('#create-game').data('bootstrapValidator').validate();
 
-});
-});
-</script>
+                    // if (result) {
+
+                    // }
+
+                    location.href = $input.val();
+                    return false;
+                }
+            });
+
+
+            $('#new-game-button').click(function () {
+                submitHighNum();
+                submitLastboard();
+            });
+
+
+            /*form valid*/
+            $('#modal-mod-name form').bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    name: {
+                        validators: {
+                            notEmpty: {
+                                message: '你妈喊你起个名！'
+                            }
+                        }
+                    }
+                }
+            }).on('success.form.bv', function (e) {
+                e.preventDefault();
+                var $form = $(e.target);
+                // Get the BootstrapValidator instance
+                var bv = $form.data('bootstrapValidator');
+                // Use Ajax to submit form data
+                $.post($form.attr('action'), $form.serialize(), function (result) {
+                    if (result.status) {
+                        var name = $('#modal-mod-name input[name="name"]').val();
+
+                        $('#modal-mod-name form button[type="submit"]').button('complete').toggleClass('btn-primary btn-success');
+
+                        $('#username').text(name);
+
+                        setTimeout(function () {
+                            $('.modal').modal('hide')
+                        }, 1000);
+                    }
+                }, 'json');
+
+            });
+        });
+    </script>
 </body>
 <!--<![endif]-->
+
 </html>

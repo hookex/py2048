@@ -10,23 +10,20 @@ header h1 {
     font-weight: bold;
 }
 
-header #new-game-button {
+#new-game-button {
     display: block;
     margin: 20px auto;
-
     width: 100px;
     padding: 10px;
     background: #8f7a66;
-
     font-family: Arial;
     color: white;
-
     border-radius: 10px;
-
     text-decoration: none;
+    text-align: center;
 }
 
-header #new-game-button:hover {
+#new-game-button:hover {
     background-color: #9f8b77;
 }
 
@@ -41,7 +38,7 @@ header p {
     height: 460px;
     padding: 20px;
 
-    margin: 50px auto;
+    margin: 10px auto;
     background-color: #bbada0;
 
     border-radius: 10px;
