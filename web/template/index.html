@@ -333,6 +333,10 @@
                 }, 'json');
 
             });
+
+            if ($("#board-record").text().replace('"', '') === '') {
+                $('#new-game-button').click();
+            }
         });
     </script>
 </body>
