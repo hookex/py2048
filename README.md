@@ -23,3 +23,8 @@ sudo easy_install pymongo==2.7
 vim setting.py
 ```
 
+##### 3. start
+```
+nohup python apprun.py &
+```
+
