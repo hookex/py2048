@@ -12,4 +12,7 @@ http://2048.hooke.site
 ### Run
 
 ##### 1. install
-- pip install kpages
+```
+sudo pip uninstall tornado && pip install tornado==3.2.2
+sudo easy_install kpages==0.9.0.dev
+```
