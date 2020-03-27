@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding:utf-8 -*-
 """
-    author comger@gmail.com
+    author cookmycode@gmail.com
 """
 import sys
 import json
