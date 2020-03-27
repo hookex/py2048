@@ -7,3 +7,9 @@ use python tornado and js
 ### Play It
 
 http://2048.hooke.site
+
+
+### Run
+
+##### 1. install
+- pip install kpages
