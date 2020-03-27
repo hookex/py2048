@@ -6,7 +6,7 @@ use python tornado and js
 
 ### Play It
 
-http://2048.hooke.site
+http://2048.hooke.life
 
 
 ### Run
