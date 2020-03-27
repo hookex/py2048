@@ -6,4 +6,25 @@ use python tornado and js
 
 ### Play It
 
-http://2048.hooke.site
+http://2048.hooke.life
+
+
+### Run
+
+##### 1. install
+```
+sudo pip uninstall tornado && pip install tornado==3.2.2
+sudo easy_install kpages==0.9.0.dev
+sudo easy_install pymongo==2.7
+```
+
+##### 2. set config
+```
+vim setting.py
+```
+
+##### 3. start
+```
+nohup python apprun.py &
+```
+
