@@ -17,3 +17,9 @@ sudo pip uninstall tornado && pip install tornado==3.2.2
 sudo easy_install kpages==0.9.0.dev
 sudo easy_install pymongo==2.7
 ```
+
+##### 2. set config
+```
+vim setting.py
+```
+
