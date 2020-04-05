@@ -6,7 +6,9 @@ use python tornado and js
 
 ### Play It
 
-http://2048.hooke.life
+https://e2048.hooke.life
+
+(腾讯云全站加速)
 
 
 ### Run
